@@ -5,8 +5,7 @@ namespace CursoCPractica5_Excepciones
     class Program
     {
         static void Main(string[] args)
-        {
-            
+        { 
             Random referenciaARandom = new Random();
             int numeroAleatorio = referenciaARandom.Next(0, 100);
             Console.WriteLine("Por favor, elige un número del 0-100");
@@ -56,22 +55,35 @@ namespace CursoCPractica5_Excepciones
                 //Quinto ejemplo: Excepción con filtro
                 //Se usa para tratar de forma diferente una excepción en concreto
 
-                catch(Exception e) when (e.GetType()!= typeof(FormatException))
+                catch (Exception e) when (e.GetType() != typeof(FormatException))
                 {
                     Console.WriteLine("Se ha producido un error indeterminado en el valor introducido. Se tomará como valor introducido el 0");
                     numeroElegido = 0;
-                }catch(FormatException)
+                }
+                catch (FormatException)
                 {
                     Console.WriteLine("Has introducido un valor de texto. Se tomará como valor introducido el 0");
                     numeroElegido = 0;
                 }
 
-
-
                 if (numeroAleatorio > numeroElegido) Console.WriteLine("Vuelve a intentarlo, el número es mayor que el que has elegido");
                 else if (numeroAleatorio < numeroElegido) Console.WriteLine("Vuelve a intentarlo, el número es menor que el que has elegido");
             } while (numeroElegido != numeroAleatorio);
             Console.WriteLine($"Enhorabuena, el número secreto era el {numeroAleatorio} y has acertado en {numIntentos} intentos");
+
+            //Sexto ejemplo: Uso checked para control de desbordamiento y subdesbordamiento
+            //Normalmente (a menos que se configure en Opciones Avanzadas) C# no chequea los errores de desbordamiento y subdesbordamiento -> No lanza excepción
+            //Usando checked si lanza dichas excepciones
+
+            checked
+            {
+                int numero = int.MaxValue;
+                int resultado = numero + 50;
+                Console.WriteLine(resultado);
+            }
+
+
+
         }
     }
 }
