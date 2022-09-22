@@ -19,11 +19,16 @@ namespace CursoCPractica5_Excepciones
                 {
                     numeroElegido = int.Parse(Console.ReadLine());
                 }
-                catch(FormatException ex)
+                catch (FormatException ex)
                 {
                     Console.WriteLine("El valor introducido no es válido. El programa tomará como valor el 0");
                     numeroElegido = 0;
-                }              
+                }
+                catch (OverflowException ex2) //Segundo ejemplo: Excepción de desbordamiento. Añadimos otro catch para tratar el error del desbordamiento
+                {
+                    Console.WriteLine("El valor introducido no demasiado alto. El programa tomará como valor el 0");
+                    numeroElegido = 0;
+                }
                 if (numeroAleatorio > numeroElegido) Console.WriteLine("Vuelve a intentarlo, el número es mayor que el que has elegido");
                 else if (numeroAleatorio < numeroElegido) Console.WriteLine("Vuelve a intentarlo, el número es menor que el que has elegido");
             } while (numeroElegido != numeroAleatorio);
