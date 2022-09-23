@@ -71,7 +71,7 @@ namespace CursoCPractica5_Excepciones
             } while (numeroElegido != numeroAleatorio);
             Console.WriteLine($"Enhorabuena, el número secreto era el {numeroAleatorio} y has acertado en {numIntentos} intentos");
 
-            //Sexto ejemplo: Uso checked para control de desbordamiento y subdesbordamiento
+            /*//Sexto ejemplo: Uso checked para control de desbordamiento y subdesbordamiento
             //Normalmente (a menos que se configure en Opciones Avanzadas) C# no chequea los errores de desbordamiento y subdesbordamiento -> No lanza excepción
             //Usando checked si lanza dichas excepciones
 
@@ -81,9 +81,13 @@ namespace CursoCPractica5_Excepciones
                 int resultado = numero + 50;
                 Console.WriteLine(resultado);
             }
+            */
 
-
-
+            //Septimo ejemplo: otra sintaxis de checked para control de desbordamiento y subdesbordamiento
+            // Si tenemos configurado el chequeo en opciones avanzadas pero no lo queremos aplicar podemos usar unchecked con la misma estructura
+            int numero = int.MaxValue;
+            int resultado = checked(numero + 50); 
+            Console.WriteLine(resultado);
         }
     }
 }
