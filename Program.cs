@@ -11,6 +11,7 @@ namespace CursoCPractica5_Excepciones
             Console.WriteLine("Por favor, elige un número del 0-100");
             int numeroElegido;
             int numIntentos = 0;
+            Console.WriteLine(numeroAleatorio);
             do
             {
                 numIntentos++;
@@ -19,6 +20,7 @@ namespace CursoCPractica5_Excepciones
                     numeroElegido = int.Parse(Console.ReadLine());
                 }
                 /*catch (FormatException ex) // Primer ejemplo: Excepción de formato
+                //El objetivo de Try catch es capturar las excepciones y que el programa no caiga
                 {
                     Console.WriteLine("El valor introducido no es válido. El programa tomará como valor el 0");
                     numeroElegido = 0;
@@ -81,13 +83,69 @@ namespace CursoCPractica5_Excepciones
                 int resultado = numero + 50;
                 Console.WriteLine(resultado);
             }
-            */
+            
 
-            //Septimo ejemplo: otra sintaxis de checked para control de desbordamiento y subdesbordamiento
+            //Septimo ejemplo: Otra sintaxis de checked para control de desbordamiento y subdesbordamiento
             // Si tenemos configurado el chequeo en opciones avanzadas pero no lo queremos aplicar podemos usar unchecked con la misma estructura
+            // checked y unchecked funcionan solo para tipos int y long
             int numero = int.MaxValue;
             int resultado = checked(numero + 50); 
-            Console.WriteLine(resultado);
+            Console.WriteLine(resultado);*/
+
+            //Octavo ejemplo: Lanzamiento de excepciones con throw
+            //Creamos una excepción para un valor fuera de rango
+            //Explorar en internet las bibliotecas de clases dentro de los distintos workspace de .Net Framework
+            //Consultamos las clases existentes dentro del workspace System
+            //Utilizamos la clase ArgumentOutOfRangeException para lanzar una excepción en nuestro programa
+            //Después usamos un Try-Catch para capturar la excepción
+
+            Console.WriteLine("Por favor introduce un número de mes");
+            int numeroDeMes = int.Parse(Console.ReadLine());
+            try
+            {
+                Console.WriteLine(NombreDeMes(numeroDeMes));
+            }catch (Exception e) 
+            {
+                Console.WriteLine("Mensaje de la excepción: " + e.Message);
+            }
+            Console.WriteLine("Aquí continuaría la ejecución del resto del programa");
+
+        }
+        public static string NombreDeMes (int mes) 
+        {
+            switch (mes) 
+            {
+                case 1: 
+                    return "Enero";
+                case 2:
+                    return "Febrero";
+                case 3:
+                    return "Marzo";
+                case 4:
+                    return "Abril";
+                case 5:
+                    return "Mayo";
+                case 6:
+                    return "Junio";
+                case 7:
+                    return "Julio";
+                case 8:
+                    return "Agosto";
+                case 9:
+                    return "Septiembre";
+                case 10:
+                    return "Octubre";
+                case 11:
+                    return "Noviembre";
+                case 12:
+                    return "Diciembre";
+                default:
+                    //return "Mes introducido no válido";
+                    throw new ArgumentOutOfRangeException(); // En lugar de devolver un mensaje lanzamos una excepción
+
+
+
+            }
         }
     }
 }

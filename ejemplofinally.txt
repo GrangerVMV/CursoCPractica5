@@ -1,0 +1,2 @@
+Hola alumnos de C#
+Esta es una prueba de uso del bloque finally
