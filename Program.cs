@@ -110,6 +110,35 @@ namespace CursoCPractica5_Excepciones
             }
             Console.WriteLine("Aquí continuaría la ejecución del resto del programa");
 
+            //Noveno ejemplo: Uso de bloque finally para el código que debe ejecutarse siempre
+            // En este ejemplo vamos a acceder al archivo "ejemplofinally.txt" que está dentro de la carpeta de la práctica 5
+            // Para ejecutar en otro PC cambiar los parámetros de la ruta
+            //La idea del bloque finally es que haya excepción o no la haya el programa cierre siempre la connexión al archivo
+
+            System.IO.StreamReader archivo = null;
+            try 
+            {
+                string linea;
+                int contador = 0;
+                string path = @"C:\Users\vmarchena.AYESA.000\source\repos\CursoCSharp\CursoCPractica5\ejemplofinally.txt";
+                // string path = @"C:\Users\vmarchena.AYESA.000\source\repos\CursoCSharp\CursoCPractica5\ejemplofinallytttt.txt"; // Si ponemos la ruta mal entra en el bloque try-catch
+                archivo = new System.IO.StreamReader(path);
+                while ((linea = archivo.ReadLine())!= null)
+                {
+                    Console.WriteLine(linea);
+                    contador++;
+                }
+            }catch (Exception e) 
+            {
+                Console.WriteLine("Error con la lectura del archivo");
+            }
+            finally 
+            {
+                if (archivo != null) archivo.Close();
+                Console.WriteLine("Conexión con el archivo cerrada");
+            }
+
+
         }
         public static string NombreDeMes (int mes) 
         {
@@ -143,8 +172,7 @@ namespace CursoCPractica5_Excepciones
                     //return "Mes introducido no válido";
                     throw new ArgumentOutOfRangeException(); // En lugar de devolver un mensaje lanzamos una excepción
 
-
-
+                    
             }
         }
     }
